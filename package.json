@@ -1,0 +1,27 @@
+{
+  "name": "build_skills",
+  "version": "1.0.0",
+  "description": "ApiRestForSkills",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jorgeochoa1987/build_skills.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jorgeochoa1987/build_skills/issues"
+  },
+  "homepage": "https://github.com/jorgeochoa1987/build_skills#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "morgan": "^1.10.0",
+    "mysql": "^2.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
