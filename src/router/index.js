@@ -56,7 +56,7 @@ router.post('/create',(req,res)=>{
 
 });
 router.get('/update/:id',(req,res)=>{
-    const {id} = req.params;
+    const {id} = req.params; 
     const{ fullname, birthday} = req.body;
     const query = `UPDATE persons SET fullname = ?,birth = ? WHERE id = ?`;
     mysqlConnection.query(query,[fullname,birthday,id],(err, rows, fields) =>{

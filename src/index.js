@@ -1,19 +1,38 @@
-const express = require('express');
-const app = express();
-const  morgan = require('morgan');
+import express, { Application } from 'express';
+import morgan from 'morgan';
+import cors from 'cors';
 
-app.set('port', process.env.PORT || 3000);
-app.set('json spaces', 2);
-/* We are stating the server*/
-/* with morgen can i get the status server */
-app.use(morgan(`combined`)); 
-app.use(express.urlencoded({extended:false}));
-app.use(express.json());
- 
-/* now i can create the routes */
-app.use(require('./router/index'));
+import indexRoute from './router/database';
 
-/*Listeners */
-app.listen(app.get('port'),()=>{
-console.log('server', app.get('port'));
-});
+class Server {
+    public app: Application;
+    
+    constructor() {
+        this.app = express();
+        this.config();
+        this.routes();
+    } 
+
+    config(): void {
+        this.app.set('port', process.env.PORT || 3000);
+
+        this.app.use(morgan('dev'));
+        this.app.use(cors());
+        this.app.use(express.json());
+        this.app.use(express.urlencoded({extended: false}));
+    }
+
+    routes(): void {
+        this.app.use('/', indexRoute);
+    }
+
+    start() {
+        this.app.listen(this.app.get('port'), () => {
+            console.log('Server on port', this.app.get('port'));
+        });
+    }
+
+}
+
+const server = new Server();
+server.start();
